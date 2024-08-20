@@ -4,8 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flexbox</title>
-    </head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        input+label::after {
+            content: "\A";
+            white-space: pre;
+        }
+
+        .contenedor {
+            display: flex;
+        }
+
+        [class*="elemento-"] {
+            padding: 2rem;
+            margin: 1rem;
+            border: 1px solid black;
+        }
+
+        .elemento-verde {
+            background-color: rgb(117, 178, 117);
+        }
+
+        .elemento-amarillo {
+            background-color: rgb(255, 255, 223);
+        }
+
+        .elemento-rojo {
+            background-color: rgb(253, 169, 169);
+        }
+    </style>
+</head>
+
 <body style="font-family: Arial, Helvetica, sans-serif;">
-  Hola Mundo
+    <div style="display: flex; flex-wrap: wrap;">
+        <div style="padding: 1rem;">
+            <h4>Propiedad: justify-content</h4>
+            <form id="form-justify-content">
+                <input type="radio" name="justify-content" id="justify-content-flex-start" value="flex-start" checked>
+                <label for="justify-content-flex-start">flex-start</label>
+                <input type="radio" name="justify-content" id="justify-content-flex-end" value="flex-end">
+                <label for="justify-content-flex-end">flex-end</label>
+                <input type="radio" name="justify-content" id="justify-content-center" value="center">
+                <label for="justify-content-center">center</label>
+                <input type="radio" name="justify-content" id="justify-content-space-evenly" value="space-evenly">
+                <label for="justify-content-space-evenly">space-evenly</label>
+                <input type="radio" name="justify-content" id="justify-content-space-around" value="space-around">
+                <label for="justify-content-space-around">space-around</label>
+                <input type="radio" name="justify-content" id="justify-content-space-between" value="space-between">
+                <label for="justify-content-space-between">space-between</label>
+            </form>
+        </div>
+        <div style="padding: 1rem;">
+            <h4>Propiedad: item-align</h4>
+            <form id="form-item-align">
+                <input type="radio" name="item-align" id="item-align-stretch" value="stretch" checked>
+                <label for="item-align-stretch">stretch</label>
+                <input type="radio" name="item-align" id="item-align-baseline" value="baseline">
+                <label for="item-align-baseline">baseline</label>
+                <input type="radio" name="item-align" id="item-align-flex-start" value="flex-start">
+                <label for="item-align-flex-start">flex-start</label>
+                <input type="radio" name="item-align" id="item-align-flex-end" value="flex-end">
+                <label for="item-align-flex-end">flex-end</label>
+                <input type="radio" name="item-align" id="item-align-center" value="center">
+                <label for="item-align-center">center</label>
+            </form>
+        </div>
+        <div style="padding: 1rem;">
+            <h4>Propiedad: flex-direction</h4>
+            <form id="form-flex-direction">
+                <input type="radio" name="flex-direction" id="flex-direction-row" value="row" checked>
+                <label for="flex-direction-row">row</label>
+                <input type="radio" name="flex-direction" id="flex-direction-row-reverse" value="row-reverse">
+                <label for="flex-direction-row-reverse">row-reverse</label>
+                <input type="radio" name="flex-direction" id="flex-direction-column" value="column">
+                <label for="flex-direction-column">column</label>
+                <input type="radio" name="flex-direction" id="flex-direction-column-reverse" value="column-reverse">
+                <label for="flex-direction-column-reverse">column-reverse</label>
+            </form>
+        </div>
+        <div style="padding: 1rem;">
+            <h4>Propiedad: flex-wrap</h4>
+            <form id="form-flex-wrap">
+                <input type="radio" name="flex-wrap" id="flex-nowrap" value="nowrap" checked>
+                <label for="flex-nowrap">flex-nowrap</label>
+                <input type="radio" name="flex-wrap" id="flex-wrap-reverse" value="wrap-reverse">
+                <label for="flex-wrap-reverse">flex-wrap-reverse</label>
+                <input type="radio" name="flex-wrap" id="flex-wrap" value="wrap">
+                <label for="flex-wrap">flex-wrap</label>
+            </form>
+        </div>
+    </div>
+    <div class="contenedor" style="height: 60vmin; background-color: lightcyan; font-family: consolas;">
+        <div class="elemento-verde">A</div>
+        <div class="elemento-amarillo">B</div>
+        <div class="elemento-rojo">C</div>
+    </div>
+    <script>
+        /*const form = document.querySelector("#form-justify-content");   
+        let elementos;     
+        form.addEventListener("change", function(){
+            elementos = document.querySelectorAll("div.contenedor div");
+            elementos.forEach(e => {
+                e.innerHTML = "hola";
+            });
+        });*/
+        const formJustifyContent = document.querySelector("#form-justify-content");
+        const formItemAlign = document.querySelector("#form-item-align");
+        const formFlexDirection = document.querySelector("#form-flex-direction");
+        const formFlexWrap = document.querySelector("#form-flex-wrap");
+        let contenedor = document.querySelector("div.contenedor");
+        formJustifyContent.addEventListener("change", function () {
+            let prop = document.querySelector('#form-justify-content input:checked').value;
+            //console.log(prop);
+            contenedor.style.justifyContent = prop;
+        });
+        formItemAlign.addEventListener("change", function () {
+            let prop = document.querySelector('#form-item-align input:checked').value;
+            contenedor.style.alignItems = prop;
+        });
+        formFlexDirection.addEventListener("change", function () {
+            let prop = document.querySelector('#form-flex-direction input:checked').value;
+            contenedor.style.flexDirection = prop;
+        });
+        formFlexWrap.addEventListener("change", function () {
+            let prop = document.querySelector('#form-flex-wrap input:checked').value;
+            console.log(prop);
+            contenedor.style.flexWrap = prop;
+        });
+    </script>
 </body>
 </html>
